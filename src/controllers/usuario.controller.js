@@ -1,4 +1,4 @@
-import { getConnection, mysql } from '../database/connection.js'
+import { connection, mysql } from '../database/connection.js'
 import { queries } from "../database/querys.js";
 /*const jwt = require ("jsonwebtoken");
 
@@ -103,12 +103,21 @@ export const loginUsuario = async (req, res) => {
 */
 export const getUsuarios = async (req, res) => {
     try {
-        const pool = await getConnection();
-        const result = await pool.request().query(queries.getUsuarios);
+        connection.query(queries.getUsuarios, (err, results) => {
+            if (err) {
+                console.error('Error al ejecutar la consulta:', err);
+                return;
+            }
 
-        res.json(result.recordset);
+            console.log('Resultados de la consulta:', results);
+
+            res.status(200).json(results);
+        });
+
+        // Cerrar la conexión cuando hayas terminado de usarla
+        //connection.end();
     } catch (error) {
-        res.status(500);
-        res.send(error.message);
+        console.error('Error al obtener usuarios:', error); // Registra el error completo en la consola del servidor
+        res.status(500).json({ message: 'Error interno del servidor' });
     }
 };

@@ -3,6 +3,7 @@ import morgan from "morgan";
 // Routes
 import usuarioRoutes from "./routes/usuario.routes";
 import config from "./config";
+const cors = require('cors')
 
 const app = express();
 
@@ -12,6 +13,10 @@ app.set("port", config.port);
 // Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use(cors())
+// permite reciber formatos JSON
+//app.use(express.json());
 
 // Routes
 app.use(usuarioRoutes);
