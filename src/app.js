@@ -2,6 +2,10 @@ import express from "express";
 import morgan from "morgan";
 // Routes
 import usuarioRoutes from "./routes/usuario.routes";
+import itemRoutes from './routes/item.routes';
+import categoriaRoutes from './routes/categoria.routes';
+import rubroRoutes from './routes/rubro.routes';
+
 import config from "./config";
 const cors = require('cors')
 
@@ -20,5 +24,8 @@ app.use(cors())
 
 // Routes
 app.use(usuarioRoutes);
+app.use(itemRoutes);
+app.use(rubroRoutes);
+app.use(categoriaRoutes);
 
 export default app;
