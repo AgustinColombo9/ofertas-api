@@ -1,4 +1,5 @@
 import { connection, mysql } from '../database/connection.js'
+//import { getConnection, sql } from '../database/connection.js'
 import { queries } from "../database/querys.js";
 
 export const getItems = async (req, res) => {
@@ -65,3 +66,58 @@ export const getItemsCategoriaId= async (req, res) => {
         res.status(500).json({ message: 'Error interno del servidor' });
     }
 };
+
+/*
+export const getItems = async (req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(queries.getItems);
+
+        res.status(200).json(result.recordset);
+    } catch (error) {
+
+        console.log("ERROR");
+
+        res.status(500);
+        res.send(error.message);
+    }
+};
+
+export const getItemsRubroId = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('id', sql.BigInt, id)
+            .query(queries.getItemsRubroId); 
+
+        res.json(result.recordset);
+    } catch (error) {
+        console.log("ERROR");
+        res.status(500);
+        res.send(error.message);
+    }
+};
+
+export const getItemsCategoriaId = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('id', sql.BigInt, id)
+            .query(queries.getItemsCategoriaId); 
+
+        res.json(result.recordset);
+    } catch (error) {
+        console.log("ERROR");
+        res.status(500);
+        res.send(error.message);
+    }
+};
+*/
