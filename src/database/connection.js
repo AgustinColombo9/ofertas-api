@@ -1,4 +1,4 @@
-//import config from './../config'
+import config from './../config'
 import mysql from 'promise-mysql'
 
 //import mysql from 'mysql';
