@@ -1,7 +1,7 @@
-import config from './../config'
-//import mysql from 'promise-mysql'
-/*
-import mysql from 'mysql';
+//import config from './../config'
+import mysql from 'promise-mysql'
+
+//import mysql from 'mysql';
 
 const dbSettings = {
     host: config.host, 
@@ -13,7 +13,7 @@ const dbSettings = {
 const connection = mysql.createConnection(dbSettings);
   
 export {mysql, connection};
-*/
+/*
 import sql from 'mssql';
 
 const dbSettings = {
@@ -41,3 +41,4 @@ export async function getConnection(){
 };
 
 export {sql};
+*/
