@@ -26,7 +26,36 @@ export const getItems = async (req, res) => {
 export const getItemsRubroId= async (req, res) => {
     try {
         const id = req.params.id; 
-        connection.query(queries.getItemsRubroId, [id], (err, results) => {
+
+        connection.query(`SELECT 
+                            ITEM_DETALLE.ITEM_DETALLE_ID, 
+                            ITEM_DETALLE.ITEM_DETALLE_SUCURSAL_ID, 
+                            ITEM_DETALLE.ITEM_DETALLE_ITEM_ID, 
+                            ITEM.ITEM_DESCRIPCION, 
+                            ITEM.ITEM_RUBRO_ID, 
+                            RUBRO.RUBRO_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_CATEGORIA_ID, 
+                            CATEGORIA.CATEGORIA_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_STOCK_MINIMO, 
+                            ITEM_DETALLE.ITEM_DETALLE_UNIDAD_ID, 
+                            UNIDAD.UNIDAD_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_MARCA, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_UNO, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_DOS, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_TRES, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_CUATRO, 
+                            ITEM_DETALLE.ITEM_DETALLE_STATUS, 
+                            ITEM_DETALLE.ITEM_DETALLE_FECHA_FABRICACION, 
+                            ITEM_DETALLE.ITEM_DETALLE_FECHA_VENCIMIENTO, 
+                            ITEM_DETALLE.ITEM_DETALLE_OBSERVACION 
+                        FROM ITEM_DETALLE 
+                            LEFT OUTER JOIN ITEM ON ITEM_DETALLE.ITEM_DETALLE_ITEM_ID = ITEM.ITEM_ID 
+                            LEFT OUTER JOIN RUBRO ON ITEM.ITEM_RUBRO_ID = RUBRO.RUBRO_ID 
+                            LEFT OUTER JOIN CATEGORIA ON ITEM_DETALLE.ITEM_DETALLE_CATEGORIA_ID = CATEGORIA.CATEGORIA_ID 
+                            LEFT OUTER JOIN UNIDAD ON ITEM_DETALLE.ITEM_DETALLE_UNIDAD_ID = UNIDAD.UNIDAD_ID 
+                        WHERE ITEM.ITEM_RUBRO_ID = ${parseInt(id)}`, 
+        (err, results) => { 
+        //connection.query(queries.getItemsRubroId, [id], (err, results) => {
             if (err) {
                 console.error('Error al ejecutar la consulta:', err);
                 return;
@@ -48,7 +77,36 @@ export const getItemsRubroId= async (req, res) => {
 export const getItemsCategoriaId= async (req, res) => {
     try {
         const id = req.params.id; 
-        connection.query(queries.getItemsCategoriaId, [id], (err, results) => {
+
+        connection.query(`SELECT 
+                            ITEM_DETALLE.ITEM_DETALLE_ID, 
+                            ITEM_DETALLE.ITEM_DETALLE_SUCURSAL_ID, 
+                            ITEM_DETALLE.ITEM_DETALLE_ITEM_ID, 
+                            ITEM.ITEM_DESCRIPCION, 
+                            ITEM.ITEM_RUBRO_ID, 
+                            RUBRO.RUBRO_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_CATEGORIA_ID, 
+                            CATEGORIA.CATEGORIA_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_STOCK_MINIMO, 
+                            ITEM_DETALLE.ITEM_DETALLE_UNIDAD_ID, 
+                            UNIDAD.UNIDAD_DESCRIPCION, 
+                            ITEM_DETALLE.ITEM_DETALLE_MARCA, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_UNO, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_DOS, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_TRES, 
+                            ITEM_DETALLE.ITEM_DETALLE_IMAGEN_CUATRO, 
+                            ITEM_DETALLE.ITEM_DETALLE_STATUS, 
+                            ITEM_DETALLE.ITEM_DETALLE_FECHA_FABRICACION, 
+                            ITEM_DETALLE.ITEM_DETALLE_FECHA_VENCIMIENTO, 
+                            ITEM_DETALLE.ITEM_DETALLE_OBSERVACION 
+                        FROM ITEM_DETALLE 
+                            LEFT OUTER JOIN ITEM ON ITEM_DETALLE.ITEM_DETALLE_ITEM_ID = ITEM.ITEM_ID 
+                            LEFT OUTER JOIN RUBRO ON ITEM.ITEM_RUBRO_ID = RUBRO.RUBRO_ID 
+                            LEFT OUTER JOIN CATEGORIA ON ITEM_DETALLE.ITEM_DETALLE_CATEGORIA_ID = CATEGORIA.CATEGORIA_ID 
+                            LEFT OUTER JOIN UNIDAD ON ITEM_DETALLE.ITEM_DETALLE_UNIDAD_ID = UNIDAD.UNIDAD_ID 
+                        WHERE ITEM_DETALLE.ITEM_DETALLE_CATEGORIA_ID = ${parseInt(id)}`, 
+        (err, results) => {
+        //connection.query(queries.getItemsCategoriaId, [id], (err, results) => {
             if (err) {
                 console.error('Error al ejecutar la consulta:', err);
                 return;

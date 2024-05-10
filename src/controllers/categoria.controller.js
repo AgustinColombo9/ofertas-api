@@ -26,7 +26,17 @@ export const getCategorias = async (req, res) => {
 export const getCategoriasRubroId = async (req, res) => {
     try {
         const id = req.params.id; 
-        connection.query(queries.getCategoriasRubroId, [id], (err, results) => { 
+
+        console.log('ID RUBRO: '+id)
+
+        connection.query(`SELECT CATEGORIA_ID, 
+                            CATEGORIA_DESCRIPCION, 
+                            CATEGORIA_RUBRO_ID, 
+                            CATEGORIA_ICONO 
+                        FROM CATEGORIA 
+                        WHERE CATEGORIA_RUBRO_ID = ${parseInt(id)}`, 
+        (err, results) => { 
+        //connection.query(queries.getCategoriasRubroId, [parseInt(id)], (err, results) => { 
             if (err) {
                 console.error('Error al ejecutar la consulta:', err);
                 return;
