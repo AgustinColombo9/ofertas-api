@@ -1,5 +1,6 @@
 import { connection, mysql } from '../database/connection.js'
 //import { getConnection, sql } from '../database/connection.js'
+import { pool } from '../database/connection.js'
 import { queries } from "../database/querys.js";
 
 
