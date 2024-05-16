@@ -27,4 +27,6 @@ export const queries = {
 
     getProvincias: 'SELECT PROVINCIA_ID, PROVINCIA_DESCRIPCION FROM PROVINCIA', 
 
+    getInmuebles: 'SELECT * FROM INMUEBLE', 
+
 }
