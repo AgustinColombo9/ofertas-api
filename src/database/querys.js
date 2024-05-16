@@ -27,6 +27,15 @@ export const queries = {
 
     getProvincias: 'SELECT PROVINCIA_ID, PROVINCIA_DESCRIPCION FROM PROVINCIA', 
 
+    newInmueble: `INSERT INTO INMUEBLE (INMUEBLE_DESCRIPCION, INMUEBLE_DIRECCION, INMUEBLE_CIUDAD_ID, INMUEBLE_HOMOLOGADO, INMUEBLE_NUMERO_HABILITACION, INMUEBLE_TIPO_INMUEBLE_ID, INMUEBLE_STATUS, INMUEBLE_SERVICIO_ID, INMUEBLE_CATEGORIA, INMUEBLE_HABITACIONES, INMUEBLE_PLANTAS, INMUEBLE_CAMAS_DOBLES, INMUEBLE_CAMAS_SIMPLES, INMUEBLE_ROPA_BLANCA, INMUEBLE_TOALLAS, INMUEBLE_ADULTOS, INMUEBLE_NINIOS, INMUEBLE_COCINA, INMUEBLE_TIPO_PENSION_ID, INMUEBLE_MICROHONDAS, INMUEBLE_CAFETERA, INMUEBLE_REFRIGERADOR, INMUEBLE_LAVARROPA, INMUEBLE_CAJA_FUERTE, INMUEBLE_BANIOS, INMUEBLE_COCHERA, INMUEBLE_COCHERA_AUTOS, INMUEBLE_PILETA, INMUEBLE_GIMNASIO, INMUEBLE_SPA, INMUEBLE_PARQUE_JUEGOS, INMUEBLE_MASCOTA, INMUEBLE_WIFI, INMUEBLE_TV, INMUEBLE_ALARMA, INMUEBLE_CALEFACCION, INMUEBLE_AIRE_ACONDICIONADO, INMUEBLE_CANCELACION_GRATIS, INMUEBLE_RESERVA_SIN_TARJETA, INMUEBLE_PAGO_ADELANTADO, INMUEBLE_IMAGEN_UNO, INMUEBLE_IMAGEN_DOS, INMUEBLE_IMAGEN_TRES, INMUEBLE_IMAGEN_CUATRO, INMUEBLE_IMAGEN_CINCO, INMUEBLE_USUARIO_ID)
+    VALUES (@inmueble_descripcion, @inmueble_direccion, @inmueble_ciudad_id, @inmueble_homologado, @inmueble_numero_habilitacion, @inmueble_tipo_inmueble_id, @inmueble_status, @inmueble_servicio_id, @inmueble_categoria, @inmueble_habitaciones, @inmueble_plantas, @inmueble_camas_dobles, @inmueble_camas_simples, @inmueble_ropa_blanca, @inmueble_toallas, @inmueble_adultos, @inmueble_ninios, @inmueble_cocina, @inmueble_tipo_pension_id, @inmueble_microhondas, @inmueble_cafetera, @inmueble_refrigerador, @inmueble_lavarropa, @inmueble_caja_fuerte, @inmueble_banios, @inmueble_cochera, @inmueble_cochera_autos, @inmueble_pileta, @inmueble_gimnasio, @inmueble_spa, @inmueble_parque_juegos, @inmueble_mascota, @inmueble_wifi, @inmueble_tv, @inmueble_alarma, @inmueble_calefaccion, @inmueble_aire_acondicionado, @inmueble_cancelacion_gratis, @inmueble_reserva_tarjeta, @inmueble_pago_adelantado, @inmueble_imagen_uno, @inmueble_imagen_dos, @inmueble_imagen_tres, @inmueble_imagen_cuatro, @inmueble_imagen_cinco, @inmueble_usuario_id)`, 
+
     getInmuebles: 'SELECT * FROM INMUEBLE', 
+
+    getInmueblePensiones: 'SELECT INMUEBLE_PENSION_ID, INMUEBLE_PENSION_DESCRIPCION FROM INMUEBLE_PENSION', 
+
+    getInmuebleServicios: 'SELECT INMUEBLE_SERVICIO_ID, INMUEBLE_SERVICIO_DESCRIPCION FROM INMUEBLE_SERVICIO', 
+
+    getInmuebleTipos: 'SELECT INMUEBLE_TIPO_ID, INMUEBLE_TIPO_DESCRIPCION FROM INMUEBLE_TIPO', 
 
 }

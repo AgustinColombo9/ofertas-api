@@ -1,7 +1,9 @@
 import { Router } from 'express'
-import { getInmuebles, getInmueblesFiltroUno } from '../controllers/inmueble.controller.js'
+import { newInmueble, getInmuebles, getInmueblesFiltroUno } from '../controllers/inmueble.controller.js'
 
 const router = Router();
+
+router.put('/inmuebles/newInmueble', newInmueble)
 
 router.get('/inmuebles/getInmuebles', getInmuebles)
 

@@ -8,6 +8,9 @@ import rubroRoutes from './routes/rubro.routes';
 import ciudadRoutes from './routes/ciudad.routes';
 import provinciaRoutes from './routes/provincia.routes'; 
 import inmuebleRoutes from './routes/inmueble.routes';
+import inmueblePensionRoutes from './routes/inmueblepension.routes';
+import inmuebleServicioRoutes from './routes/inmuebleservicio.routes';
+import inmuebleTipoRoutes from './routes/inmuebletipo.routes';
 
 import config from "./config";
 const cors = require('cors')
@@ -33,5 +36,8 @@ app.use(categoriaRoutes);
 app.use(ciudadRoutes);
 app.use(provinciaRoutes);
 app.use(inmuebleRoutes);
+app.use(inmueblePensionRoutes);
+app.use(inmuebleServicioRoutes);
+app.use(inmuebleTipoRoutes)
 
 export default app;
