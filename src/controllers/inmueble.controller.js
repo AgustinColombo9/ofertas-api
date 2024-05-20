@@ -1,78 +1,103 @@
 import { connection, mysql } from '../database/connection.js'
 //import { getConnection, sql } from '../database/connection.js'
 import { queries } from "../database/querys.js";
+import multer from 'multer'; 
+const upload = multer();
 
 export const newInmueble = async (req, res) => {
     try {
-        const { 
-            inmueble_descripcion, 
-            inmueble_direccion, 
-            inmueble_ciudad_id, 
-            inmueble_homologado, 
-            inmueble_numero_habilitacion, 
-            inmueble_tipo_inmueble_id, 
-            inmueble_status, 
-            inmueble_servicio_id, 
-            inmueble_categoria, 
-            inmueble_habitaciones, 
-            inmueble_plantas, 
-            inmueble_camas_dobles, 
-            inmueble_camas_simples, 
-            inmueble_ropa_blanca, 
-            inmueble_toallas, 
-            inmueble_adultos, 
-            inmueble_ninios, 
-            inmueble_cocina, 
-            inmueble_tipo_pension_id, 
-            inmueble_microhondas, 
-            inmueble_cafetera, 
-            inmueble_refrigerador, 
-            inmueble_lavarropa, 
-            inmueble_caja_fuerte, 
-            inmueble_banios, 
-            inmueble_cochera, 
-            inmueble_cochera_autos, 
-            inmueble_pileta, 
-            inmueble_gimnasio, 
-            inmueble_spa, 
-            inmueble_parque_juegos, 
-            inmueble_mascota, 
-            inmueble_wifi, 
-            inmueble_tv, 
-            inmueble_alarma, 
-            inmueble_calefaccion, 
-            inmueble_aire_acondicionado, 
-            inmueble_cancelacion_gratis, 
-            inmueble_reserva_tarjeta, 
-            inmueble_pago_adelantado, 
-            inmueble_imagen_uno, 
-            inmueble_imagen_dos, 
-            inmueble_imagen_tres, 
-            inmueble_imagen_cuatro, 
-            inmueble_imagen_cinco,
-            inmueble_usuario_id 
-        } = req.body;
-
-        let sqlSentence = `INSERT INTO INMUEBLE (INMUEBLE_DESCRIPCION, INMUEBLE_DIRECCION, INMUEBLE_CIUDAD_ID, INMUEBLE_HOMOLOGADO, INMUEBLE_NUMERO_HABILITACION, INMUEBLE_TIPO_INMUEBLE_ID, INMUEBLE_STATUS, INMUEBLE_SERVICIO_ID, INMUEBLE_CATEGORIA, INMUEBLE_HABITACIONES, INMUEBLE_PLANTAS, INMUEBLE_CAMAS_DOBLES, INMUEBLE_CAMAS_SIMPLES, INMUEBLE_ROPA_BLANCA, INMUEBLE_TOALLAS, INMUEBLE_ADULTOS, INMUEBLE_NINIOS, INMUEBLE_COCINA, INMUEBLE_TIPO_PENSION_ID, INMUEBLE_MICROHONDAS, INMUEBLE_CAFETERA, INMUEBLE_REFRIGERADOR, INMUEBLE_LAVARROPA, INMUEBLE_CAJA_FUERTE, INMUEBLE_BANIOS, INMUEBLE_COCHERA, INMUEBLE_COCHERA_AUTOS, INMUEBLE_PILETA, INMUEBLE_GIMNASIO, INMUEBLE_SPA, INMUEBLE_PARQUE_JUEGOS, INMUEBLE_MASCOTA, INMUEBLE_WIFI, INMUEBLE_TV, INMUEBLE_ALARMA, INMUEBLE_CALEFACCION, INMUEBLE_AIRE_ACONDICIONADO, INMUEBLE_CANCELACION_GRATIS, INMUEBLE_RESERVA_SIN_TARJETA, INMUEBLE_PAGO_ADELANTADO, INMUEBLE_IMAGEN_UNO, INMUEBLE_IMAGEN_DOS, INMUEBLE_IMAGEN_TRES, INMUEBLE_IMAGEN_CUATRO, INMUEBLE_IMAGEN_CINCO, INMUEBLE_USUARIO_ID)
-        VALUES (${inmueble_descripcion} , ${inmueble_direccion}, ${inmueble_ciudad_id}, ${inmueble_homologado}, ${inmueble_numero_habilitacion}, ${inmueble_tipo_inmueble_id}, ${inmueble_status}, ${inmueble_servicio_id}, ${inmueble_categoria}, ${inmueble_habitaciones}, ${inmueble_plantas}, ${inmueble_camas_dobles}, ${inmueble_camas_simples}, ${inmueble_ropa_blanca}, ${inmueble_toallas}, ${inmueble_adultos}, ${inmueble_ninios}, ${inmueble_cocina}, ${inmueble_tipo_pension_id}, ${inmueble_microhondas}, ${inmueble_cafetera}, ${inmueble_refrigerador}, ${inmueble_lavarropa}, ${inmueble_caja_fuerte}, ${inmueble_banios}, ${inmueble_cochera}, ${inmueble_cochera_autos}, ${inmueble_pileta}, ${inmueble_gimnasio}, ${inmueble_spa}, ${inmueble_parque_juegos}, ${inmueble_mascota}, ${inmueble_wifi}, ${inmueble_tv}, ${inmueble_alarma}, ${inmueble_calefaccion}, ${inmueble_aire_acondicionado}, ${inmueble_cancelacion_gratis}, ${inmueble_reserva_tarjeta}, ${inmueble_pago_adelantado}, ${inmueble_imagen_uno}, ${inmueble_imagen_dos}, ${inmueble_imagen_tres}, ${inmueble_imagen_cuatro}, ${inmueble_imagen_cinco}, ${inmueble_usuario_id})`
-
-        // Ejecuta la consulta SQL de inserción
-        connection.query(sqlSentence, 
-        //connection.query(queries.newInmueble, [inmueble_descripcion, inmueble_direccion, inmueble_ciudad_id, inmueble_homologado, inmueble_numero_habilitacion, inmueble_tipo_inmueble_id, inmueble_status, inmueble_servicio_id, inmueble_categoria, inmueble_habitaciones, inmueble_plantas, inmueble_camas_dobles, inmueble_camas_simples, inmueble_ropa_blanca, inmueble_toallas, inmueble_adultos, inmueble_ninios, inmueble_cocina, inmueble_tipo_pension_id, inmueble_microhondas, inmueble_cafetera, inmueble_refrigerador, inmueble_lavarropa, inmueble_caja_fuerte, inmueble_banios, inmueble_cochera, inmueble_cochera_autos, inmueble_pileta, inmueble_gimnasio, inmueble_spa, inmueble_parque_juegos, inmueble_mascota, inmueble_wifi, inmueble_tv, inmueble_alarma, inmueble_calefaccion, inmueble_aire_acondicionado, inmueble_cancelacion_gratis, inmueble_reserva_tarjeta, inmueble_pago_adelantado, inmueble_imagen_uno, inmueble_imagen_dos, inmueble_imagen_tres, inmueble_imagen_cuatro, inmueble_imagen_cinco, inmueble_usuario_id], (err, results) => {
-            (err, results) => { 
-                //connection.query(queries.getCategoriasRubroId, [parseInt(id)], (err, results) => { 
-                if (err) {
-                    console.error('Error al ejecutar la consulta:', err);
-                    return;
-                }
-
-                console.log('Resultados de la consulta:', results);
-
-                res.status(200).json(results);
+        upload.none()(req, res, (err) => {
+            if (err) {
+                console.error('Error al procesar los datos:', err);
+                res.status(400).json({ message: 'Error en los datos enviados' });
+                return;
             }
-        );
 
+            //const formData = req.body;
+            const { 
+                inmueble_descripcion, 
+                inmueble_direccion, 
+                inmueble_ciudad_id, 
+                inmueble_homologado, 
+                inmueble_numero_habilitacion, 
+                inmueble_tipo_inmueble_id, 
+                inmueble_status, 
+                inmueble_servicio_id, 
+                inmueble_categoria, 
+                inmueble_habitaciones, 
+                inmueble_plantas, 
+                inmueble_camas_dobles, 
+                inmueble_camas_simples, 
+                inmueble_ropa_blanca, 
+                inmueble_toallas, 
+                inmueble_adultos, 
+                inmueble_ninios, 
+                inmueble_cocina, 
+                inmueble_tipo_pension_id, 
+                inmueble_microhondas, 
+                inmueble_cafetera, 
+                inmueble_refrigerador, 
+                inmueble_lavarropa, 
+                inmueble_caja_fuerte, 
+                inmueble_banios, 
+                inmueble_cochera, 
+                inmueble_cochera_autos, 
+                inmueble_pileta, 
+                inmueble_gimnasio, 
+                inmueble_spa, 
+                inmueble_parque_juegos, 
+                inmueble_mascota, 
+                inmueble_wifi, 
+                inmueble_tv, 
+                inmueble_alarma, 
+                inmueble_calefaccion, 
+                inmueble_aire_acondicionado, 
+                inmueble_cancelacion_gratis, 
+                inmueble_reserva_tarjeta, 
+                inmueble_pago_adelantado, 
+                inmueble_imagen_uno, 
+                inmueble_imagen_dos, 
+                inmueble_imagen_tres, 
+                inmueble_imagen_cuatro, 
+                inmueble_imagen_cinco,
+                inmueble_usuario_id 
+            } = req.body;
 
+            const imageOne = req.files.inmueble_imagen_uno[0].buffer;
+            const imageTwo = req.files.inmueble_imagen_dos[0].buffer; 
+            const imageThree = req.files.inmueble_imagen_tres[0].buffer;
+            const imageFour = req.files.inmueble_imagen_cuatro[0].buffer;
+            const imageFive = req.files.inmueble_imagen_cinco[0].buffer;
+            
+            //console.log('Datos del formulario:', formData);
+            console.log('Imagen 1:', imageOne);
+            console.log('Imagen 2:', imageTwo);
+            console.log('Imagen 3:', imageThree);
+            console.log('Imagen 4:', imageFour);
+            console.log('Imagen 5:', imageFive);
+
+            res.status(200).json({ message: 'Datos y imágenes recibidos correctamente' });
+
+            let sqlSentence = `INSERT INTO INMUEBLE (INMUEBLE_DESCRIPCION, INMUEBLE_DIRECCION, INMUEBLE_CIUDAD_ID, INMUEBLE_HOMOLOGADO, INMUEBLE_NUMERO_HABILITACION, INMUEBLE_TIPO_INMUEBLE_ID, INMUEBLE_STATUS, INMUEBLE_SERVICIO_ID, INMUEBLE_CATEGORIA, INMUEBLE_HABITACIONES, INMUEBLE_PLANTAS, INMUEBLE_CAMAS_DOBLES, INMUEBLE_CAMAS_SIMPLES, INMUEBLE_ROPA_BLANCA, INMUEBLE_TOALLAS, INMUEBLE_ADULTOS, INMUEBLE_NINIOS, INMUEBLE_COCINA, INMUEBLE_TIPO_PENSION_ID, INMUEBLE_MICROHONDAS, INMUEBLE_CAFETERA, INMUEBLE_REFRIGERADOR, INMUEBLE_LAVARROPA, INMUEBLE_CAJA_FUERTE, INMUEBLE_BANIOS, INMUEBLE_COCHERA, INMUEBLE_COCHERA_AUTOS, INMUEBLE_PILETA, INMUEBLE_GIMNASIO, INMUEBLE_SPA, INMUEBLE_PARQUE_JUEGOS, INMUEBLE_MASCOTA, INMUEBLE_WIFI, INMUEBLE_TV, INMUEBLE_ALARMA, INMUEBLE_CALEFACCION, INMUEBLE_AIRE_ACONDICIONADO, INMUEBLE_CANCELACION_GRATIS, INMUEBLE_RESERVA_SIN_TARJETA, INMUEBLE_PAGO_ADELANTADO, INMUEBLE_IMAGEN_UNO, INMUEBLE_IMAGEN_DOS, INMUEBLE_IMAGEN_TRES, INMUEBLE_IMAGEN_CUATRO, INMUEBLE_IMAGEN_CINCO, INMUEBLE_USUARIO_ID)
+            VALUES (${inmueble_descripcion} , ${inmueble_direccion}, ${inmueble_ciudad_id}, ${inmueble_homologado}, ${inmueble_numero_habilitacion}, ${inmueble_tipo_inmueble_id}, ${inmueble_status}, ${inmueble_servicio_id}, ${inmueble_categoria}, ${inmueble_habitaciones}, ${inmueble_plantas}, ${inmueble_camas_dobles}, ${inmueble_camas_simples}, ${inmueble_ropa_blanca}, ${inmueble_toallas}, ${inmueble_adultos}, ${inmueble_ninios}, ${inmueble_cocina}, ${inmueble_tipo_pension_id}, ${inmueble_microhondas}, ${inmueble_cafetera}, ${inmueble_refrigerador}, ${inmueble_lavarropa}, ${inmueble_caja_fuerte}, ${inmueble_banios}, ${inmueble_cochera}, ${inmueble_cochera_autos}, ${inmueble_pileta}, ${inmueble_gimnasio}, ${inmueble_spa}, ${inmueble_parque_juegos}, ${inmueble_mascota}, ${inmueble_wifi}, ${inmueble_tv}, ${inmueble_alarma}, ${inmueble_calefaccion}, ${inmueble_aire_acondicionado}, ${inmueble_cancelacion_gratis}, ${inmueble_reserva_tarjeta}, ${inmueble_pago_adelantado}, ${inmueble_imagen_uno}, ${inmueble_imagen_dos}, ${inmueble_imagen_tres}, ${inmueble_imagen_cuatro}, ${inmueble_imagen_cinco}, ${inmueble_usuario_id})`
+
+            // Ejecuta la consulta SQL de inserción
+            connection.query(sqlSentence, 
+            //connection.query(queries.newInmueble, [inmueble_descripcion, inmueble_direccion, inmueble_ciudad_id, inmueble_homologado, inmueble_numero_habilitacion, inmueble_tipo_inmueble_id, inmueble_status, inmueble_servicio_id, inmueble_categoria, inmueble_habitaciones, inmueble_plantas, inmueble_camas_dobles, inmueble_camas_simples, inmueble_ropa_blanca, inmueble_toallas, inmueble_adultos, inmueble_ninios, inmueble_cocina, inmueble_tipo_pension_id, inmueble_microhondas, inmueble_cafetera, inmueble_refrigerador, inmueble_lavarropa, inmueble_caja_fuerte, inmueble_banios, inmueble_cochera, inmueble_cochera_autos, inmueble_pileta, inmueble_gimnasio, inmueble_spa, inmueble_parque_juegos, inmueble_mascota, inmueble_wifi, inmueble_tv, inmueble_alarma, inmueble_calefaccion, inmueble_aire_acondicionado, inmueble_cancelacion_gratis, inmueble_reserva_tarjeta, inmueble_pago_adelantado, inmueble_imagen_uno, inmueble_imagen_dos, inmueble_imagen_tres, inmueble_imagen_cuatro, inmueble_imagen_cinco, inmueble_usuario_id], (err, results) => {
+                (err, results) => { 
+                    //connection.query(queries.getCategoriasRubroId, [parseInt(id)], (err, results) => { 
+                    if (err) {
+                        console.error('Error al ejecutar la consulta:', err);
+                        return;
+                    }
+
+                    console.log('Resultados de la consulta:', results);
+
+                    res.status(200).json(results);
+                }
+            );
+        }
+    )
     } catch (error) {
         console.error('Error al guardar nuevo inmueble:', error);
         res.status(500).json({ message: 'Error interno del servidor' });
@@ -80,7 +105,7 @@ export const newInmueble = async (req, res) => {
 };
 
 export const updateInmueble = async (req, res) => {
-    
+
 }
 
 export const getInmuebles = async (req, res) => {
